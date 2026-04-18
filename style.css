@@ -21,3 +21,8 @@ nav li {
 section {
   padding: 20px;
 }
+
+section {
+  padding: 20px;
+  border-top: 1px solid gray;
+}
