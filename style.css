@@ -26,3 +26,11 @@ section {
   padding: 20px;
   border-top: 1px solid gray;
 }
+
+h2 {
+  margin-top: 20px;
+}
+
+div {
+  margin-bottom: 15px;
+}
