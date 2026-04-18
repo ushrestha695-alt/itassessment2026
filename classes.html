@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classes & Schedule — IronForge Gym</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Local nav (section navigation) */
+    .local-nav {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+    }
+    .local-nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .local-nav a {
+      font-family: var(--font-condensed);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding: 14px 20px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .local-nav a:hover, .local-nav a.active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    .classes-section { padding: 80px 0; }
+    .class-full-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .class-full-card {
+      background: var(--dark-mid);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .class-full-card:hover { transform: translateY(-4px); border-color: var(--red); }
+    .class-full-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .class-full-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+    .intensity {
+      font-family: var(--font-condensed);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid;
+    }
+    .intensity.high { color: var(--red); border-color: var(--red); }
+    .intensity.med { color: var(--gold); border-color: var(--gold); }
+    .intensity.low { color: #4caf50; border-color: #4caf50; }
+    .class-full-body { padding: 24px 28px; }
+    .class-full-body p { color: var(--grey); margin-bottom: 20px; line-height: 1.7; }
+    .class-stats {
+      display: flex; gap: 24px;
+      font-family: var(--font-condensed);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: var(--light-grey);
+      margin-bottom: 20px;
+    }
+    .class-stats span::before { margin-right: 6px; }
+
+    /* Schedule Table */
+    .schedule-section { padding: 0 0 80px; }
+    .schedule-wrap { overflow-x: auto; }
+    .schedule-table { min-width: 700px; }
+    .schedule-table .time-col { color: var(--gold); font-weight: 600; }
+    .schedule-table .class-cell {
+      background: var(--dark-mid);
+      border-radius: 2px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+    .schedule-table .class-cell strong {
+      display: block;
+      font-family: var(--font-condensed);
+      letter-spacing: 1px;
+    }
+    .schedule-table .class-cell small { color: var(--grey); font-size: 0.75rem; }
+    td.empty { background: transparent; }
+
+    /* Nested table demo */
+    .nested-section { padding: 0 0 80px; }
+    .nested-table { border: 1px solid var(--border); }
+    .nested-inner { width: 100%; border-collapse: collapse; }
+    .nested-inner td { padding: 8px 12px; font-size: 0.85rem; border: 1px solid var(--border); color: var(--grey); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html" class="active">Classes</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Local Navigation -->
+<div class="local-nav">
+  <div class="local-nav-inner">
+    <a href="#all-classes" class="active">All Classes</a>
+    <a href="#strength">Strength</a>
+    <a href="#cardio">Cardio</a>
+    <a href="#combat">Combat</a>
+    <a href="#mind-body">Mind & Body</a>
+    <a href="#schedule">Schedule</a>
+  </div>
+</div>
+
+<header class="page-header">
+  <h1>Our <span>Classes</span></h1>
+  <p>60+ weekly classes · All fitness levels welcome</p>
+</header>
+
+<div class="container">
+
+  <!-- All Classes -->
+  <section class="classes-section" id="all-classes">
+    <h2 class="section-title" id="strength">Strength <span>Training</span></h2>
+    <p class="section-sub">Build real, functional power</p>
+    <div class="class-full-grid">
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>Powerlifting</h3>
+          <span class="intensity high">High</span>
+        </div>
+        <div class="class-full-body">
+          <p>The king of all strength sports. Master the squat, bench press, and deadlift with technique coaching from competitive powerlifters. Program-based training ensures progressive overload.</p>
+          <div class="class-stats">
+            <span>⏱ 75 min</span>
+            <span>👥 Max 12</span>
+            <span>📅 Mon / Wed / Fri</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>Olympic Lifting</h3>
+          <span class="intensity high">High</span>
+        </div>
+        <div class="class-full-body">
+          <p>Snatch and clean-and-jerk coaching from certified Olympic Weightlifting coaches. Develop explosive power, coordination and athletic performance through the sport's most technical lifts.</p>
+          <div class="class-stats">
+            <span>⏱ 90 min</span>
+            <span>👥 Max 8</span>
+            <span>📅 Tue / Thu / Sat</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cardio" class="classes-section" style="padding-top:0;">
+    <h2 class="section-title">Cardio & <span>Conditioning</span></h2>
+    <p class="section-sub">Burn fat, build endurance</p>
+    <div class="class-full-grid">
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>HIIT Inferno</h3>
+          <span class="intensity high">High</span>
+        </div>
+        <div class="class-full-body">
+          <p>45 minutes of high-intensity interval training that maximises caloric burn and builds cardiovascular endurance. Expect burpees, kettlebells, battle ropes, and no mercy.</p>
+          <div class="class-stats">
+            <span>⏱ 45 min</span>
+            <span>👥 Max 20</span>
+            <span>📅 Mon–Sat 6am</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>CrossForge</h3>
+          <span class="intensity high">High</span>
+        </div>
+        <div class="class-full-body">
+          <p>Our signature functional fitness class. Each session combines gymnastics skills, Olympic lifts, and metabolic conditioning into a constantly varied workout you'll never repeat.</p>
+          <div class="class-stats">
+            <span>⏱ 60 min</span>
+            <span>👥 Max 16</span>
+            <span>📅 Daily 7am & 6pm</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="combat" class="classes-section" style="padding-top:0;">
+    <h2 class="section-title">Combat <span>Sports</span></h2>
+    <p class="section-sub">Train like a fighter</p>
+    <div class="class-full-grid">
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>Boxing Fundamentals</h3>
+          <span class="intensity med">Medium</span>
+        </div>
+        <div class="class-full-body">
+          <p>Learn the sweet science from a former pro fighter. Footwork, combinations, defensive technique, and bag work. Great for fitness and self-defense alike.</p>
+          <div class="class-stats">
+            <span>⏱ 60 min</span>
+            <span>👥 Max 14</span>
+            <span>📅 Tue / Thu / Sat</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>Muay Thai</h3>
+          <span class="intensity high">High</span>
+        </div>
+        <div class="class-full-body">
+          <p>The art of eight limbs. Punches, kicks, elbows, and knees. An elite full-body workout that develops striking technique, coordination, and mental toughness.</p>
+          <div class="class-stats">
+            <span>⏱ 75 min</span>
+            <span>👥 Max 12</span>
+            <span>📅 Mon / Wed / Fri</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mind-body" class="classes-section" style="padding-top:0;">
+    <h2 class="section-title">Mind <span>& Body</span></h2>
+    <p class="section-sub">Recover, restore, recharge</p>
+    <div class="class-full-grid">
+      <div class="class-full-card">
+        <div class="class-full-header">
+          <h3>Yoga Flow</h3>
+          <span class="intensity low">Low</span>
+        </div>
+        <div class="class-full-body">
+          <p>Vinyasa-based yoga designed for athletes. Improve mobility, flexibility, breathing, and mental clarity. The perfect complement to heavy training days.</p>
+          <div class="class-stats">
+            <span>⏱ 60 min</span>
+            <span>👥 Max 18</span>
+            <span>📅 Sun 9am / Wed 7pm</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="font-size:0.85rem;padding:10px 24px;">Book Class</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Table -->
+  <section class="schedule-section" id="schedule">
+    <h2 class="section-title">Weekly <span>Schedule</span></h2>
+    <p class="section-sub">All times Nepal Standard Time (NST)</p>
+    <div class="schedule-wrap">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">06:00</td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Priya · 45min</small></div></td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Dev · 45min</small></div></td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Priya · 45min</small></div></td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Dev · 45min</small></div></td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Priya · 45min</small></div></td>
+            <td><div class="class-cell"><strong>HIIT Inferno</strong><small>Rajan · 45min</small></div></td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td class="time-col">07:00</td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Olympic Lifting</strong><small>Dev · 90min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Olympic Lifting</strong><small>Dev · 90min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Olympic Lifting</strong><small>Dev · 90min</small></div></td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td class="time-col">09:00</td>
+            <td><div class="class-cell"><strong>Powerlifting</strong><small>Dev · 75min</small></div></td>
+            <td><div class="class-cell"><strong>Boxing</strong><small>Rajan · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Powerlifting</strong><small>Dev · 75min</small></div></td>
+            <td><div class="class-cell"><strong>Boxing</strong><small>Rajan · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Powerlifting</strong><small>Dev · 75min</small></div></td>
+            <td><div class="class-cell"><strong>Boxing</strong><small>Rajan · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Yoga Flow</strong><small>Sita · 60min</small></div></td>
+          </tr>
+          <tr>
+            <td class="time-col">18:00</td>
+            <td><div class="class-cell"><strong>Muay Thai</strong><small>Rajan · 75min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Muay Thai</strong><small>Rajan · 75min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Muay Thai</strong><small>Rajan · 75min</small></div></td>
+            <td class="empty">—</td>
+            <td class="empty">—</td>
+          </tr>
+          <tr>
+            <td class="time-col">19:30</td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Yoga Flow</strong><small>Sita · 60min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td><div class="class-cell"><strong>Yoga Flow</strong><small>Sita · 60min</small></div></td>
+            <td><div class="class-cell"><strong>CrossForge</strong><small>Priya · 60min</small></div></td>
+            <td class="empty">—</td>
+            <td class="empty">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Nested Table Demo -->
+  <section class="nested-section">
+    <h2 class="section-title">Class <span>Pricing</span> by Category</h2>
+    <p class="section-sub">Included with all membership plans</p>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Classes Included</th>
+          <th>Drop-In Rate</th>
+          <th>Available Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><strong class="text-red">Strength</strong></td>
+          <td>Powerlifting</td>
+          <td>$15</td>
+          <td>
+            <table class="nested-inner">
+              <tr><td>Mon</td><td>Wed</td><td>Fri</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>Olympic Lifting</td>
+          <td>$18</td>
+          <td>
+            <table class="nested-inner">
+              <tr><td>Tue</td><td>Thu</td><td>Sat</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong class="text-red">Cardio</strong></td>
+          <td>HIIT Inferno</td>
+          <td>$12</td>
+          <td colspan="1">Mon–Sat (morning)</td>
+        </tr>
+        <tr>
+          <td>CrossForge</td>
+          <td>$14</td>
+          <td>Daily (morning &amp; evening)</td>
+        </tr>
+        <tr>
+          <td><strong class="text-red">Combat</strong></td>
+          <td>Boxing / Muay Thai</td>
+          <td>$16</td>
+          <td>Mon / Tue / Wed / Thu / Fri / Sat</td>
+        </tr>
+        <tr>
+          <td><strong class="text-red">Mind & Body</strong></td>
+          <td>Yoga Flow</td>
+          <td>$10</td>
+          <td>Wed (eve) / Sun (morning)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Iron<span>Forge</span></div>
+      <p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
+      <br/><p>📧 <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Classes</h4>
+      <ul>
+        <li><a href="#strength">Powerlifting</a></li>
+        <li><a href="#cardio">HIIT Inferno</a></li>
+        <li><a href="#cardio">CrossForge</a></li>
+        <li><a href="#combat">Boxing</a></li>
+        <li><a href="#mind-body">Yoga Flow</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+        <li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+        <li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+        <li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="secondary-nav">
+    <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="classes.html">Classes</a> |
+    <a href="membership.html">Membership</a> | <a href="gallery.html">Gallery</a> | <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    <p>Designed for The British College · IT Assessment 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery — IronForge Gym</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Filter buttons = local nav */
+    .filter-nav {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+    }
+    .filter-nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .filter-btn {
+      font-family: var(--font-condensed);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding: 14px 20px;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    /* Gallery Grid */
+    .gallery-section { padding: 60px 0; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .thumb-link {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--dark-mid);
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      transition: border-color 0.3s;
+    }
+    .thumb-link:hover { border-color: var(--red); }
+    .thumb-link:hover .thumb-overlay { opacity: 1; }
+    .thumb-link:hover .thumb-emoji { transform: scale(1.15); }
+
+    .thumb-emoji {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      transition: transform 0.4s;
+      background: linear-gradient(135deg, var(--dark), var(--mid));
+    }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(232, 0, 29, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .thumb-overlay span {
+      font-family: var(--font-condensed);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-top: 8px;
+    }
+    .zoom-icon { font-size: 1.8rem; }
+
+    .thumb-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 20px 14px 12px;
+      font-family: var(--font-condensed);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* Gallery category labels */
+    .category-label {
+      grid-column: 1 / -1;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--white);
+      padding: 24px 0 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+    }
+    .category-label span { color: var(--red); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 2.5rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--red); }
+    .lightbox-content {
+      background: var(--dark-mid);
+      border: 1px solid var(--border);
+      width: 680px;
+      max-width: 90vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lightbox-img {
+      width: 100%;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10rem;
+      background: linear-gradient(135deg, var(--dark), var(--mid));
+    }
+    .lightbox-info {
+      padding: 24px 32px;
+      width: 100%;
+    }
+    .lightbox-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .lightbox-info p { color: var(--grey); font-size: 0.9rem; }
+    .lightbox-tag {
+      font-family: var(--font-condensed);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: var(--red); }
+    .lb-prev { left: 24px; }
+    .lb-next { right: 24px; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Local nav / filter nav -->
+<div class="filter-nav">
+  <div class="filter-nav-inner">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All Photos</button>
+    <button class="filter-btn" onclick="filterGallery('facility', this)">Facility</button>
+    <button class="filter-btn" onclick="filterGallery('training', this)">Training</button>
+    <button class="filter-btn" onclick="filterGallery('classes', this)">Classes</button>
+    <button class="filter-btn" onclick="filterGallery('members', this)">Transformations</button>
+  </div>
+</div>
+
+<header class="page-header">
+  <h1>Our <span>Gallery</span></h1>
+  <p>Click any thumbnail to view full size</p>
+</header>
+
+<div class="container">
+  <section class="gallery-section">
+    <div class="gallery-grid" id="gallery">
+
+      <div class="category-label">The <span>Facility</span></div>
+
+      <a class="thumb-link"
+         data-category="facility"
+         data-title="Main Training Floor"
+         data-desc="18,000 sq/ft of world-class equipment spread across three purpose-built floors."
+         data-tag="Facility"
+         data-emoji="🏋️"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🏋️</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Main Training Floor</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="facility"
+         data-title="Olympic Platform Area"
+         data-desc="6 dedicated Olympic lifting platforms with bumper plates and Eleiko barbells."
+         data-tag="Facility"
+         data-emoji="⚡"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">⚡</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Olympic Platforms</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="facility"
+         data-title="Combat Zone"
+         data-desc="Full-size boxing ring, heavy bags, speed bags, and MMA mats."
+         data-tag="Facility"
+         data-emoji="🥊"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🥊</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Combat Zone</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="facility"
+         data-title="Recovery Suite"
+         data-desc="Ice baths, infrared saunas, and massage chairs. Because recovery is training too."
+         data-tag="Facility"
+         data-emoji="🧊"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🧊</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Recovery Suite</div>
+      </a>
+
+      <div class="category-label">In <span>Training</span></div>
+
+      <a class="thumb-link"
+         data-category="training"
+         data-title="Deadlift PR"
+         data-desc="Member Marcus T. setting a new personal record on the platform. 250kg raw."
+         data-tag="Training"
+         data-emoji="💪"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">💪</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Deadlift PR — 250kg</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="training"
+         data-title="Olympic Snatch"
+         data-desc="Coach Dev demonstrating a textbook full-depth snatch at 130kg bodyweight."
+         data-tag="Training"
+         data-emoji="🏆"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🏆</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Olympic Snatch Demo</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="training"
+         data-title="Battle Ropes"
+         data-desc="HIIT Inferno session in full swing. 45 minutes of non-stop conditioning."
+         data-tag="Training"
+         data-emoji="🔥"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🔥</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">HIIT Battle Ropes</div>
+      </a>
+
+      <div class="category-label">Group <span>Classes</span></div>
+
+      <a class="thumb-link"
+         data-category="classes"
+         data-title="CrossForge Morning Class"
+         data-desc="6am CrossForge class — 16 athletes. One shared goal. Zero excuses."
+         data-tag="Classes"
+         data-emoji="🌅"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🌅</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">CrossForge — 6am</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="classes"
+         data-title="Yoga Flow"
+         data-desc="Sunday morning Yoga Flow with Sita. Mobility meets mindfulness."
+         data-tag="Classes"
+         data-emoji="🧘"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🧘</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Sunday Yoga Flow</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="classes"
+         data-title="Boxing Fundamentals"
+         data-desc="Rajan leads the Boxing Fundamentals class. Everyone hits harder by session 3."
+         data-tag="Classes"
+         data-emoji="👊"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">👊</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Boxing Fundamentals</div>
+      </a>
+
+      <div class="category-label">Member <span>Transformations</span></div>
+
+      <a class="thumb-link"
+         data-category="members"
+         data-title="Marcus T. — 12 Months"
+         data-desc="Lost 40kg and competed in his first powerlifting meet. 12 months at IronForge."
+         data-tag="Transformation"
+         data-emoji="⭐"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">⭐</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Marcus — 12mo Journey</div>
+      </a>
+
+      <a class="thumb-link"
+         data-category="members"
+         data-title="Priti S. — 8 Months"
+         data-desc="From couch to CrossForge competitor in 8 months. Now coaches beginners herself."
+         data-tag="Transformation"
+         data-emoji="🌟"
+         href="#"
+         onclick="openLightbox(event, this)">
+        <div class="thumb-emoji">🌟</div>
+        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-caption">Priti — 8mo Journey</div>
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lb-prev" onclick="navLightbox(-1)">&#8592;</button>
+  <div class="lightbox-content">
+    <div class="lightbox-img" id="lb-img"></div>
+    <div class="lightbox-info">
+      <p class="lightbox-tag" id="lb-tag"></p>
+      <h3 id="lb-title"></h3>
+      <p id="lb-desc"></p>
+    </div>
+  </div>
+  <button class="lightbox-nav lb-next" onclick="navLightbox(1)">&#8594;</button>
+</div>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Iron<span>Forge</span></div>
+      <p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
+      <br/><p>📧 <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Gallery</h4>
+      <ul>
+        <li><a href="gallery.html">All Photos</a></li>
+        <li><a href="gallery.html">Facility Tour</a></li>
+        <li><a href="gallery.html">Training Action</a></li>
+        <li><a href="gallery.html">Transformations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+        <li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+        <li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+        <li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="secondary-nav">
+    <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="classes.html">Classes</a> |
+    <a href="membership.html">Membership</a> | <a href="gallery.html">Gallery</a> | <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    <p>Designed for The British College · IT Assessment 2026</p>
+  </div>
+</footer>
+
+<script>
+  // Gallery filter
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.thumb-link').forEach(el => {
+      if (cat === 'all' || el.dataset.category === cat) {
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('.category-label').forEach(l => l.style.display = cat === 'all' ? 'block' : 'none');
+  }
+
+  // Lightbox
+  let items = [];
+  let currentIdx = 0;
+
+  function buildItems() {
+    items = Array.from(document.querySelectorAll('.thumb-link'));
+  }
+
+  function openLightbox(e, el) {
+    e.preventDefault();
+    buildItems();
+    currentIdx = items.indexOf(el);
+    showItem(currentIdx);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showItem(idx) {
+    const el = items[idx];
+    document.getElementById('lb-img').textContent = el.dataset.emoji;
+    document.getElementById('lb-title').textContent = el.dataset.title;
+    document.getElementById('lb-desc').textContent = el.dataset.desc;
+    document.getElementById('lb-tag').textContent = el.dataset.tag;
+  }
+
+  function navLightbox(dir) {
+    currentIdx = (currentIdx + dir + items.length) % items.length;
+    showItem(currentIdx);
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  });
+</script>
+</body>
+</html>
