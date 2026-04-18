@@ -1,5 +1,23 @@
 body {
   font-family: Arial;
-  background: white;
-  color: black;
+  margin: 0;
+}
+
+nav {
+  background: black;
+  color: white;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  display: inline;
+  margin-right: 10px;
+}
+
+section {
+  padding: 20px;
 }
