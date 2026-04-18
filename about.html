@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — IronForge Gym</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0;
+    }
+    .about-story .big-num {
+      font-family: var(--font-display);
+      font-size: 10rem;
+      color: var(--red);
+      opacity: 0.15;
+      line-height: 1;
+      display: block;
+      margin-bottom: -40px;
+    }
+    .about-story h2 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+    .about-story p {
+      color: var(--grey);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 40px 0 80px;
+    }
+    .value-item {
+      background: var(--dark);
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .value-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .value-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .value-item p { color: var(--grey); font-size: 0.9rem; }
+
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .trainer-card {
+      background: var(--dark-mid);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .trainer-card:hover { transform: translateY(-6px); border-color: var(--red); }
+    .trainer-photo {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, var(--dark), var(--mid));
+      position: relative;
+      overflow: hidden;
+    }
+    .trainer-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, var(--dark-mid), transparent);
+    }
+    .trainer-info { padding: 24px; }
+    .trainer-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .trainer-info .spec {
+      font-family: var(--font-condensed);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .trainer-info p { color: var(--grey); font-size: 0.85rem; }
+
+    .timeline-section { padding: 0 0 80px; }
+    .timeline-section h2 { margin-bottom: 8px; }
+
+    @media (max-width: 768px) {
+      .about-story { grid-template-columns: 1fr; gap: 40px; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+      <li><a href="sitemap.html">Sitemap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>About <span>IronForge</span></h1>
+  <p>Our Story · Our Mission · Our People</p>
+</header>
+
+<div class="container">
+
+<div class="about-story">
+<div>
+<span class="big-num">12</span>
+<h2>Built From <span class="text-red">Sweat</span> & Sacrifice</h2>
+<p>IronForge Gym was founded in 2012 by former national powerlifting champion Utsav Shrestha in a 600 sq/ft basement with 8 barbells and a dream. Today, we're Nepal's most decorated fitness facility — spanning 18,000 sq/ft across three floors in the heart of Kathmandu.</p>
+<p>What hasn't changed in 12 years is our philosophy: every single person who walks through our doors is capable of extraordinary things. We're here to prove it.</p>
+<p>We've trained Olympians, CEOs, first-timers, and everyone in between. The bar doesn't care about your background — and neither do we.</p>
+<br/>
+<a href="contact.html" class="btn btn-outline">Start Your Journey</a>
+</div>
+
+<div style="background:var(--dark-mid);border:1px solid var(--border);height:400px;overflow:hidden;">
+  <img src="images/about-story.jpg" alt="IronForge Gym interior" style="width:100%;height:100%;object-fit:cover;">
+</div>
+</div>
+
+<h2 class="section-title">Our <span>Values</span></h2>
+<p class="section-sub">The principles that drive everything we do</p>
+
+<div class="values-grid">
+<div class="value-item">
+
+<h3>Intensity</h3>
+<p>Half-measures produce half-results. We train with full commitment, every single session.</p>
+</div>
+
+<div class="value-item">
+
+<h3>Integrity</h3>
+<p>No shortcuts, no excuses. Earned results through honest, consistent hard work.</p>
+</div>
+
+<div class="value-item">
+
+<h3>Community</h3>
+<p>We rise together. Your gym family pushes you when you're weak and celebrates your victories.</p>
+</div>
+</div>
+
+<h2 class="section-title">Meet Our <span>Coaches</span></h2>
+<p class="section-sub">World-class expertise. Personal attention.</p>
+
+<div class="trainers-grid">
+
+<div class="trainer-card">
+<div class="trainer-photo">
+  <img src="images/coach-1.jpg" alt="Coach Sampurna" style="width:100%;height:100%;object-fit:cover;">
+</div>
+<div class="trainer-info">
+<h3>Utsav Shrestha</h3>
+<p class="spec">Founder · Powerlifting</p>
+<p>3× National Powerlifting Champion. NSCA Certified. 20 years of coaching experience.</p>
+</div>
+</div>
+
+<div class="trainer-card">
+<div class="trainer-photo">
+  <img src="images/coach-4.jpg" alt="Coach Sampurna" style="width:100%;height:100%;object-fit:cover;">
+</div>
+<div class="trainer-info">
+<h3>Priya Tamang</h3>
+<p class="spec">Head Coach · CrossFit</p>
+<p>CrossFit Level 3 Trainer. Former collegiate gymnast. Specialises in functional movement.</p>
+</div>
+</div>
+
+<div class="trainer-card">
+<div class="trainer-photo">
+  <img src="images/Coach.webp" alt="Coach Sampurna" style="width:100%;height:100%;object-fit:cover;">
+</div>
+<div class="trainer-info">
+<h3>Rajan Gurung</h3>
+<p class="spec">Boxing & MMA Coach</p>
+<p>Pro MMA record 14-3. UFC training camp veteran. Certified in combat sports conditioning.</p>
+</div>
+</div>
+
+<div class="trainer-card">
+<div class="trainer-photo">
+  <img src="images/yoga.jpeg" alt="Coach Sampurna" style="width:100%;height:100%;object-fit:cover;">
+</div>
+<div class="trainer-info">
+<h3>Sita Karki</h3>
+<p class="spec">Yoga · Recovery Specialist</p>
+<p>RYT-500 certified. Sports physio background. Expert in mobility and injury prevention.</p>
+</div>
+</div>
+
+</div>
+
+<div class="timeline-section">
+<h2 class="section-title">Our <span>Milestones</span></h2>
+<p class="section-sub">A decade of growth and achievement</p>
+
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Milestone</th>
+<th>Members</th>
+<th>Achievement</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2012</td>
+<td>IronForge Founded</td>
+<td>48</td>
+<td>Opened first location in Kathmandu basement</td>
+</tr>
+
+<tr>
+<td>2014</td>
+<td>First Expansion</td>
+<td>320</td>
+<td>Moved to 5,000 sq/ft facility, added group classes</td>
+</tr>
+
+<tr>
+<td>2016</td>
+<td>National Recognition</td>
+<td>900</td>
+<td rowspan="2">Best Gym in Nepal — FitLife Awards (2016 &amp; 2018)</td>
+</tr>
+
+<tr>
+<td>2018</td>
+<td>CrossForge Launch</td>
+<td>1,800</td>
+</tr>
+
+<tr>
+<td>2020</td>
+<td>App &amp; Online Coaching</td>
+<td>2,100</td>
+<td>Pivoted to hybrid model during pandemic; launched IronForge App</td>
+</tr>
+
+<tr>
+<td>2022</td>
+<td>Current Flagship Opens</td>
+<td>3,600</td>
+<td>18,000 sq/ft three-floor facility in Kathmandu city centre</td>
+</tr>
+
+<tr>
+<td>2024</td>
+<td>Olympic Athlete Partner</td>
+<td>4,200</td>
+<td>Official training facility for Nepal Olympic weightlifting team</td>
+</tr>
+
+<tr>
+<td>2026</td>
+<td>Today</td>
+<td><strong class="text-red">4,500+</strong></td>
+<td>Nepal's most awarded gym — and we're just getting started</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<footer id="footer">
+<div class="footer-grid">
+
+<div class="footer-brand">
+<div class="logo">Iron<span>Forge</span></div>
+<p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
+<br/><p><a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+</div>
+
+<div class="footer-col">
+<h4>Pages</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="classes.html">Classes</a></li>
+<li><a href="membership.html">Membership</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>Classes</h4>
+<ul>
+<li><a href="classes.html">Powerlifting</a></li>
+<li><a href="classes.html">HIIT Inferno</a></li>
+<li><a href="classes.html">CrossForge</a></li>
+<li><a href="classes.html">Boxing</a></li>
+<li><a href="classes.html">Yoga Flow</a></li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h4>External Links</h4>
+<ul>
+<li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+<li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+<li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+<li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+</ul>
+</div>
+
+</div>
+
+<div class="secondary-nav">
+<a href="index.html">Home</a> | 
+<a href="about.html">About</a> | 
+<a href="classes.html">Classes</a> |
+<a href="membership.html">Membership</a> | 
+<a href="gallery.html">Gallery</a> | 
+<a href="contact.html">Contact</a>
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+<p>Designed for The British College · IT Assessment 2026</p>
+</div>
+
+</footer>
+
+</body>
+</html>

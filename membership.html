@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership Plans — IronForge Gym</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 40px 0 80px;
+    }
+    .plan {
+      background: var(--dark);
+      padding: 40px 32px;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .plan:hover { background: var(--dark-mid); }
+    .plan.featured {
+      background: var(--dark-mid);
+      border: 2px solid var(--red);
+      margin: -1px;
+      z-index: 1;
+    }
+    .plan-badge {
+      position: absolute;
+      top: -1px; right: -1px;
+      background: var(--red);
+      font-family: var(--font-condensed);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+    }
+    .plan-name {
+      font-family: var(--font-condensed);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 8px;
+    }
+    .plan h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .plan-price sup { font-size: 1.8rem; vertical-align: top; margin-top: 12px; }
+    .plan-price .period {
+      font-family: var(--font-condensed);
+      font-size: 1rem;
+      color: var(--grey);
+      letter-spacing: 1px;
+    }
+    .plan.featured .plan-price { color: var(--red); }
+    .plan-features {
+      list-style: none;
+      margin: 28px 0 32px;
+    }
+    .plan-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--light-grey);
+      display: flex;
+      gap: 10px;
+    }
+    .plan-features li::before { content: '✓'; color: var(--red); font-weight: bold; }
+    .plan-features li.no { color: var(--grey); }
+    .plan-features li.no::before { content: '✗'; color: var(--grey); }
+
+    /* Compare Table */
+    .compare-section { padding: 0 0 80px; }
+    .compare-wrap { overflow-x: auto; }
+    .compare-table { min-width: 600px; }
+    .compare-table td:first-child { color: var(--light-grey); font-weight: 500; }
+    .check { color: var(--red); font-size: 1.1rem; font-weight: bold; }
+    .cross { color: var(--grey); }
+
+    /* FAQ */
+    .faq-section { padding: 0 0 80px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-condensed);
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: var(--dark-mid); }
+    .faq-q .arrow { transition: transform 0.3s; color: var(--red); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      background: var(--dark-mid);
+      color: var(--grey);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .faq-a.open { max-height: 300px; padding: 20px 24px; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+
+    @media (max-width: 768px) {
+      .plans-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="membership.html" class="active">Membership</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+      <li><a href="sitemap.html">Sitemap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>Membership <span>Plans</span></h1>
+  <p>No joining fee · No lock-in contracts · Cancel anytime</p>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <h2 class="section-title">Choose Your <span>Plan</span></h2>
+    <p class="section-sub">All plans include a 7-day free trial</p>
+
+    <div class="plans-grid">
+      <!-- BASIC -->
+      <div class="plan">
+        <p class="plan-name">Starter</p>
+        <h3>Basic</h3>
+        <div class="plan-price"><sup>$</sup>29<span class="period">/mo</span></div>
+        <ul class="plan-features">
+          <li>Full gym floor access</li>
+          <li>Locker room & showers</li>
+          <li>2 group classes/month</li>
+          <li>App access (basic)</li>
+          <li class="no">Personal training sessions</li>
+          <li class="no">Nutrition coaching</li>
+          <li class="no">Recovery suite access</li>
+          <li class="no">Guest passes</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline" style="width:100%;text-align:center;">Get Started</a>
+      </div>
+
+      <!-- ELITE (Featured) -->
+      <div class="plan featured">
+        <span class="plan-badge">Most Popular</span>
+        <p class="plan-name">Best Value</p>
+        <h3>Elite</h3>
+        <div class="plan-price"><sup>$</sup>49<span class="period">/mo</span></div>
+        <ul class="plan-features">
+          <li>Full gym floor access</li>
+          <li>Locker room & showers</li>
+          <li>Unlimited group classes</li>
+          <li>App access (full)</li>
+          <li>1 PT session/month</li>
+          <li>Nutrition coaching (basic)</li>
+          <li>Recovery suite access</li>
+          <li class="no">Guest passes</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;">Join Now</a>
+      </div>
+
+      <!-- CHAMPION -->
+      <div class="plan">
+        <p class="plan-name">All-Inclusive</p>
+        <h3>Champion</h3>
+        <div class="plan-price"><sup>$</sup>89<span class="period">/mo</span></div>
+        <ul class="plan-features">
+          <li>Full gym floor access</li>
+          <li>Locker room & showers</li>
+          <li>Unlimited group classes</li>
+          <li>App access (full + coaching)</li>
+          <li>4 PT sessions/month</li>
+          <li>Full nutrition coaching</li>
+          <li>Recovery suite access</li>
+          <li>2 guest passes/month</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline" style="width:100%;text-align:center;">Go Champion</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare Table with colspan/rowspan -->
+  <section class="compare-section">
+    <h2 class="section-title">Plan <span>Comparison</span></h2>
+    <p class="section-sub">See exactly what each plan includes</p>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th style="text-align:center;">Basic</th>
+            <th style="text-align:center;background:var(--red-dark);">Elite ⭐</th>
+            <th style="text-align:center;">Champion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4" style="background:var(--mid);font-family:var(--font-condensed);letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;color:var(--grey);padding:10px 20px;">Facility Access</td>
+          </tr>
+          <tr>
+            <td>Full Gym Floor</td>
+            <td style="text-align:center;" class="check">✓</td>
+            <td style="text-align:center;" class="check">✓</td>
+            <td style="text-align:center;" class="check">✓</td>
+          </tr>
+          <tr>
+            <td>24/7 Access</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;" class="check">✓</td>
+            <td style="text-align:center;" class="check">✓</td>
+          </tr>
+          <tr>
+            <td>Recovery Suite</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;" class="check">✓</td>
+            <td style="text-align:center;" class="check">✓</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="background:var(--mid);font-family:var(--font-condensed);letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;color:var(--grey);padding:10px 20px;">Classes & Coaching</td>
+          </tr>
+          <tr>
+            <td>Group Classes</td>
+            <td style="text-align:center;">2 / month</td>
+            <td style="text-align:center;">Unlimited</td>
+            <td style="text-align:center;">Unlimited</td>
+          </tr>
+          <tr>
+            <td>Personal Training</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;">1 / month</td>
+            <td style="text-align:center;">4 / month</td>
+          </tr>
+          <tr>
+            <td>Nutrition Coaching</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;">Basic</td>
+            <td style="text-align:center;">Full</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="background:var(--mid);font-family:var(--font-condensed);letter-spacing:2px;text-transform:uppercase;font-size:0.8rem;color:var(--grey);padding:10px 20px;">Extras</td>
+          </tr>
+          <tr>
+            <td>Guest Passes</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;" class="cross">✗</td>
+            <td style="text-align:center;">2 / month</td>
+          </tr>
+          <tr>
+            <td>IronForge App</td>
+            <td style="text-align:center;">Basic</td>
+            <td style="text-align:center;">Full</td>
+            <td style="text-align:center;">Full + Coach</td>
+          </tr>
+          <tr>
+            <td rowspan="1"><strong>Monthly Price</strong></td>
+            <td style="text-align:center;font-family:var(--font-display);font-size:1.5rem;">$29</td>
+            <td style="text-align:center;font-family:var(--font-display);font-size:1.5rem;color:var(--red);">$49</td>
+            <td style="text-align:center;font-family:var(--font-display);font-size:1.5rem;">$89</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2 class="section-title">Common <span>Questions</span></h2>
+    <p class="section-sub">Everything you need to know before joining</p>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is there a joining fee or contract? <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">No joining fee and no long-term contracts. All our memberships are month-to-month. You can cancel with 30 days' notice at any time, no questions asked.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How does the 7-day free trial work? <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Sign up via our contact form or front desk. You'll get full Elite-level access for 7 days absolutely free. No credit card required to start. At the end of your trial, choose the plan that suits you.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Can I freeze my membership? <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Yes. Elite and Champion members can freeze their membership for up to 3 months per year at no cost — perfect for travel or injury recovery. Basic members can freeze for 1 month per year.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Are there discounts for students or couples? <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Yes! We offer 15% off for verified students (ID required), couples who join together get 10% off both memberships, and corporate rates are available for teams of 5+. Contact us for details.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What payment methods do you accept? <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">We accept eSewa, Khalti, FonePay, bank transfer, cash, and all major credit/debit cards. Memberships are billed on the same date each month.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Iron<span>Forge</span></div>
+      <p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
+      <br/><p><a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Plans</h4>
+      <ul>
+        <li><a href="membership.html">Basic — $29/mo</a></li>
+        <li><a href="membership.html">Elite — $49/mo</a></li>
+        <li><a href="membership.html">Champion — $89/mo</a></li>
+        <li><a href="contact.html">7-Day Free Trial</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+        <li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+        <li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+        <li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="secondary-nav">
+    <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="classes.html">Classes</a> |
+    <a href="membership.html">Membership</a> | <a href="gallery.html">Gallery</a> | <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    <p>Designed for The British College · IT Assessment 2026</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+    const answer = el.nextElementSibling;
+    answer.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

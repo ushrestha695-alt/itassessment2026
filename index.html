@@ -1,54 +1,269 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>IronForge Gym</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IronForge Gym — Forge Your Legend</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    
+  </style>
 </head>
-
 <body>
 
-<nav>
-  <h1>IronForge Gym</h1>
-  <ul>
-    <li>Home</li>
-    <li>About</li>
-    <li>Classes</li>
-    <li>Contact</li>
-  </ul>
+<!--  NAVBAR  -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      
+    </ul>
+  </div>
 </nav>
 
-<section>
-  <h2>Welcome to IronForge Gym</h2>
-  <p>Forge your strength and become your best self.</p>
-  <button>Join Now</button>
-</section>
+<!--  HERO SLIDER  -->
+<section class="hero">
+  <div class="slides" id="slides">
 
-<section>
-  <h2>Our Stats</h2>
-  <p>Members: 500+</p>
-  <p>Trainers: 20+</p>
-  <p>Open: 24/7</p>
-</section>
+    <div class="slide slide-1">
+      <div class="slide-bg"></div>
+      <div class="slide-content">
+        <p class="slide-label">Welcome to IronForge Gym</p>
+        <h1 class="slide-title">Forge<br/><em>Your</em><br/>Legend</h1>
+        <p class="slide-desc">Where ordinary people become extraordinary athletes. The iron never lies.</p>
+        <div class="slide-btns">
+          <a href="membership.html" class="btn btn-primary">Join Now</a>
+          <a href="classes.html" class="btn btn-outline">View Classes</a>
+        </div>
+      </div>
+    </div>
 
-<section>
-  <h2>Our Services</h2>
+    <div class="slide slide-2">
+      <div class="slide-bg"></div>
+      <div class="slide-content">
+        <p class="slide-label">Elite Coaching</p>
+        <h1 class="slide-title">Train<br/><em>Like</em><br/>Champions</h1>
+        <p class="slide-desc">Certified trainers. Proven programs. Transformations that last a lifetime.</p>
+        <div class="slide-btns">
+          <a href="about.html" class="btn btn-primary">Meet Our Team</a>
+          <a href="gallery.html" class="btn btn-outline">See Results</a>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <h3>Weight Training</h3>
-    <p>Build strength with modern equipment.</p>
+    <div class="slide slide-3">
+      <div class="slide-bg"></div>
+      <div class="slide-content">
+        <p class="slide-label">State-of-the-Art Facility</p>
+        <h1 class="slide-title">World<br/><em>Class</em><br/>Gear</h1>
+        <p class="slide-desc">500+ machines. Olympic platforms. Recovery suites. Everything you need.</p>
+        <div class="slide-btns">
+          <a href="gallery.html" class="btn btn-primary">Take a Tour</a>
+          <a href="contact.html" class="btn btn-outline">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div>
-    <h3>Cardio Training</h3>
-    <p>Improve endurance and burn fat.</p>
-  </div>
+  <button class="slider-arrow slider-prev" onclick="moveSlide(-1)" aria-label="Previous slide">&#8592;</button>
+  <button class="slider-arrow slider-next" onclick="moveSlide(1)" aria-label="Next slide">&#8594;</button>
 
-  <div>
-    <h3>Personal Training</h3>
-    <p>Get guided by expert trainers.</p>
+  <div class="slider-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
   </div>
-
 </section>
 
+<!--  STATS BAR  -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat"><div class="stat-num">4,500+</div><div class="stat-label">Active Members</div></div>
+    <div class="stat"><div class="stat-num">38</div><div class="stat-label">Expert Trainers</div></div>
+    <div class="stat"><div class="stat-num">60+</div><div class="stat-label">Weekly Classes</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Open Access</div></div>
+  </div>
+</div>
+
+<!--  FEATURES  -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">Why Choose <span>IronForge</span></h2>
+    <p class="section-sub">Everything you need under one roof</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">🏋️</div>
+        <h3>Olympic Lifting</h3>
+        <p>Dedicated Olympic platforms with bumper plates, speed racks, and professional-grade barbells for every lift.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🥊</div>
+        <h3>Combat Zone</h3>
+        <p>Full boxing ring, heavy bags, speed bags, and MMA mats. Train like a fighter, think like a champion.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🧘</div>
+        <h3>Recovery Studio</h3>
+        <p>Ice baths, infrared saunas, massage chairs and guided stretching. Recover faster. Perform better.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🍎</div>
+        <h3>Nutrition Lab</h3>
+        <p>In-house nutrition coaching, supplements bar, and personalised macro-tracking to fuel your goals.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📱</div>
+        <h3>IronForge App</h3>
+        <p>Track workouts, book classes, message coaches, and monitor your progress — all from your phone.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">👥</div>
+        <h3>Community</h3>
+        <p>Monthly challenges, member events, and a brotherhood/sisterhood built on mutual respect and progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  MEMBERSHIP PROMO  -->
+<section>
+  <div class="container">
+    <div class="promo-split">
+      <div class="promo-img"></div>
+      <div class="promo-text">
+        <p class="section-sub">Limited Time Offer</p>
+        <h2 class="section-title">Start Your <span>Journey</span></h2>
+        <p>No joining fee. No lock-in contracts. Just pure commitment to becoming the best version of yourself. First month is on us — train free for 7 days.</p>
+        <div class="price-tag"><sup>$</sup>49</div>
+        <p class="price-note">/ month — All access membership</p>
+        <a href="membership.html" class="btn btn-primary">View All Plans</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES PREVIEW -->
+<section class="classes-preview">
+  <div class="container">
+    <h2 class="section-title">Our <span>Classes</span></h2>
+    <p class="section-sub">Find your perfect training style</p>
+    <div class="classes-grid">
+      <div class="class-card">
+        <p class="class-tag">Strength</p>
+        <h3>Powerlifting</h3>
+        <p>Master the squat, bench, and deadlift under expert supervision. Build real, functional strength.</p>
+        <div class="class-meta"><span>⏱ 75 min</span><span>🔥 All Levels</span></div>
+      </div>
+      <div class="class-card">
+        <p class="class-tag">Cardio</p>
+        <h3>HIIT Inferno</h3>
+        <p>High-intensity interval training that torches calories and builds cardiovascular endurance fast.</p>
+        <div class="class-meta"><span>⏱ 45 min</span><span>🔥 Intermediate</span></div>
+      </div>
+      <div class="class-card">
+        <p class="class-tag">Functional</p>
+        <h3>CrossForge</h3>
+        <p>Our signature functional fitness class combining gymnastics, Olympic lifts, and metcons.</p>
+        <div class="class-meta"><span>⏱ 60 min</span><span>🔥 Advanced</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="classes.html" class="btn btn-outline">See Full Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIAL ══ -->
+<section class="testimonial">
+  <div class="container">
+    <div class="divider"></div>
+    <p class="section-sub">Member Stories</p>
+    <blockquote>"IronForge didn't just change my body — it changed my <span class="text-red">entire life.</span>"</blockquote>
+    <cite>— Marcus T., Member since 2021 · Lost 40kg, Competed in first powerlifting meet</cite>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Iron<span>Forge</span></div>
+      <p>The premier training facility in Kathmandu. We build athletes, not just gym-goers. Open 24/7, 365 days a year.</p>
+      <br/>
+      <p>📧 <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Classes</h4>
+      <ul>
+        <li><a href="classes.html">Powerlifting</a></li>
+        <li><a href="classes.html">HIIT Inferno</a></li>
+        <li><a href="classes.html">CrossForge</a></li>
+        <li><a href="classes.html">Boxing</a></li>
+        <li><a href="classes.html">Yoga Flow</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+        <li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+        <li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+        <li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="secondary-nav">
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="classes.html">Classes</a> |
+    <a href="membership.html">Membership</a> |
+    <a href="gallery.html">Gallery</a> |
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    <p>Designed for The British College · IT Assessment 2026</p>
+  </div>
+</footer>
+
+<script>
+  let current = 0;
+  const total = 3;
+  function updateSlider() {
+    document.getElementById('slides').style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function moveSlide(dir) {
+    current = (current + dir + total) % total;
+    updateSlider();
+  }
+  function goSlide(n) { current = n; updateSlider(); }
+  setInterval(() => moveSlide(1), 5000);
+</script>
 </body>
 </html>

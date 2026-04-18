@@ -60,17 +60,21 @@
     }
     .thumb-link:hover { border-color: var(--red); }
     .thumb-link:hover .thumb-overlay { opacity: 1; }
-    .thumb-link:hover .thumb-emoji { transform: scale(1.15); }
+    .thumb-link:hover .thumb-emoji img { transform: scale(1.15); }
 
     .thumb-emoji {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      transition: transform 0.4s;
+      overflow: hidden;
       background: linear-gradient(135deg, var(--dark), var(--mid));
+    }
+
+    .thumb-emoji img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
     }
 
     .thumb-overlay {
@@ -155,11 +159,14 @@
     .lightbox-img {
       width: 100%;
       height: 420px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10rem;
       background: linear-gradient(135deg, var(--dark), var(--mid));
+      overflow: hidden;
+    }
+    .lightbox-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .lightbox-info {
       padding: 24px 32px;
@@ -211,6 +218,7 @@
       <li><a href="gallery.html" class="active">Gallery</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+      <li><a href="sitemap.html">Sitemap</a></li>
     </ul>
   </div>
 </nav>
@@ -242,11 +250,11 @@
          data-title="Main Training Floor"
          data-desc="18,000 sq/ft of world-class equipment spread across three purpose-built floors."
          data-tag="Facility"
-         data-emoji="🏋️"
+         data-image="images/gallery-1.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🏋️</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/gallery-1.jpg" alt="Main Training Floor"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Main Training Floor</div>
       </a>
 
@@ -255,11 +263,11 @@
          data-title="Olympic Platform Area"
          data-desc="6 dedicated Olympic lifting platforms with bumper plates and Eleiko barbells."
          data-tag="Facility"
-         data-emoji="⚡"
+         data-image="images/gallery-2.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">⚡</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/gallery-2.jpg" alt="Olympic Platform Area"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Olympic Platforms</div>
       </a>
 
@@ -268,11 +276,11 @@
          data-title="Combat Zone"
          data-desc="Full-size boxing ring, heavy bags, speed bags, and MMA mats."
          data-tag="Facility"
-         data-emoji="🥊"
+         data-image="images/gallery-3.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🥊</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/combatzone.webp" alt="Combat Zone"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Combat Zone</div>
       </a>
 
@@ -281,11 +289,11 @@
          data-title="Recovery Suite"
          data-desc="Ice baths, infrared saunas, and massage chairs. Because recovery is training too."
          data-tag="Facility"
-         data-emoji="🧊"
+         data-image="images/gallery-4.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🧊</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/gallery-4.jpg" alt="Recovery Suite"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Recovery Suite</div>
       </a>
 
@@ -296,11 +304,11 @@
          data-title="Deadlift PR"
          data-desc="Member Marcus T. setting a new personal record on the platform. 250kg raw."
          data-tag="Training"
-         data-emoji="💪"
+         data-image="images/gallery-5.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">💪</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/gallery-5.jpg" alt="Deadlift PR"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Deadlift PR — 250kg</div>
       </a>
 
@@ -309,52 +317,68 @@
          data-title="Olympic Snatch"
          data-desc="Coach Dev demonstrating a textbook full-depth snatch at 130kg bodyweight."
          data-tag="Training"
-         data-emoji="🏆"
+         data-image="images/gallery-6.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🏆</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/gallery-6.jpg" alt="Olympic Snatch"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Olympic Snatch Demo</div>
       </a>
 
-      <a class="thumb-link"
-         data-category="training"
-         data-title="Battle Ropes"
-         data-desc="HIIT Inferno session in full swing. 45 minutes of non-stop conditioning."
-         data-tag="Training"
-         data-emoji="🔥"
-         href="#"
-         onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🔥</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+    <a class="thumb-link"
+        data-category="training"
+        data-title="Battle Ropes"
+        data-desc="HIIT Inferno session in full swing. 45 minutes of non-stop conditioning."
+        data-tag="Training"
+        data-image="images/battleropes.webp"
+        href="#"
+        onclick="openLightbox(event, this)">
+
+        <div class="thumb-emoji">
+            <img src="images/battleropes.webp" alt="Battle Ropes">
+        </div>
+
+        <div class="thumb-overlay">
+            <div class="zoom-icon">+</div>
+            <span>View Full</span>
+        </div>
+
         <div class="thumb-caption">HIIT Battle Ropes</div>
-      </a>
+    </a>
 
       <div class="category-label">Group <span>Classes</span></div>
 
-      <a class="thumb-link"
-         data-category="classes"
-         data-title="CrossForge Morning Class"
-         data-desc="6am CrossForge class — 16 athletes. One shared goal. Zero excuses."
-         data-tag="Classes"
-         data-emoji="🌅"
-         href="#"
-         onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🌅</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
-        <div class="thumb-caption">CrossForge — 6am</div>
-      </a>
+    <a class="thumb-link"
+        data-category="classes"
+        data-title="CrossForge Morning Class"
+        data-desc="6am CrossForge class — 16 athletes. One shared goal. Zero excuses."
+        data-tag="Classes"
+        data-image="images/Group gym.png"
+        href="#"
+        onclick="openLightbox(event, this)">
+
+        <div class="thumb-emoji">
+            <img src="images/Group gym.png" alt="CrossForge Morning Class">
+        </div>
+
+        <div class="thumb-overlay">
+            <div class="zoom-icon">+</div>
+            <span>View Full</span>
+        </div>
+
+        <div class="thumb-caption">CrossForge — 6 am</div>
+    </a>
 
       <a class="thumb-link"
          data-category="classes"
          data-title="Yoga Flow"
          data-desc="Sunday morning Yoga Flow with Sita. Mobility meets mindfulness."
          data-tag="Classes"
-         data-emoji="🧘"
+         data-image="images/yogagym.jpg"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🧘</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/yogagym.jpg" alt="Yoga Flow"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Sunday Yoga Flow</div>
       </a>
 
@@ -363,41 +387,49 @@
          data-title="Boxing Fundamentals"
          data-desc="Rajan leads the Boxing Fundamentals class. Everyone hits harder by session 3."
          data-tag="Classes"
-         data-emoji="👊"
+         data-image="images/box.png"
          href="#"
          onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">👊</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        <div class="thumb-emoji"><img src="images/box.png" alt="Boxing Fundamentals"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Boxing Fundamentals</div>
       </a>
 
       <div class="category-label">Member <span>Transformations</span></div>
 
-      <a class="thumb-link"
-         data-category="members"
-         data-title="Marcus T. — 12 Months"
-         data-desc="Lost 40kg and competed in his first powerlifting meet. 12 months at IronForge."
-         data-tag="Transformation"
-         data-emoji="⭐"
-         href="#"
-         onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">⭐</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
-        <div class="thumb-caption">Marcus — 12mo Journey</div>
-      </a>
+    <a class="thumb-link"
+        data-category="training"
+        data-title="Deadlift PR"
+        data-desc="Member Marcus T. setting a new personal record on the platform. 250kg raw."
+        data-tag="Training"
+        data-image="images/transformation.webp"
+        href="#"
+        onclick="openLightbox(event, this)">
+
+        <div class="thumb-emoji">
+            <img src="images/transformation.webp" alt="Deadlift PR">
+        </div>
+
+        <div class="thumb-overlay">
+            <div class="zoom-icon">+</div>
+            <span>View Full</span>
+        </div>
+
+        <div class="thumb-caption">Deadlift PR — 250kg</div>
+    </a>
 
       <a class="thumb-link"
-         data-category="members"
-         data-title="Priti S. — 8 Months"
-         data-desc="From couch to CrossForge competitor in 8 months. Now coaches beginners herself."
-         data-tag="Transformation"
-         data-emoji="🌟"
-         href="#"
-         onclick="openLightbox(event, this)">
-        <div class="thumb-emoji">🌟</div>
-        <div class="thumb-overlay"><div class="zoom-icon">🔍</div><span>View Full</span></div>
+        data-category="members"
+        data-title="Priti S. — 8 Months"
+        data-desc="From couch to CrossForge competitor in 8 months. Now coaches beginners herself."
+        data-tag="Transformation"
+        data-image="images/TristaTransformation.webp"
+            href="#"
+        onclick="openLightbox(event, this)">
+        <div class="thumb-emoji"><img src="images/TristaTransformation.webp" alt="Priti Transformation"></div>
+        <div class="thumb-overlay"><div class="zoom-icon">+</div><span>View Full</span></div>
         <div class="thumb-caption">Priti — 8mo Journey</div>
-      </a>
+</a>
 
     </div>
   </section>
@@ -423,7 +455,7 @@
     <div class="footer-brand">
       <div class="logo">Iron<span>Forge</span></div>
       <p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
-      <br/><p>📧 <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+      <br/><p><a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
     </div>
     <div class="footer-col">
       <h4>Pages</h4>
@@ -434,6 +466,7 @@
         <li><a href="membership.html">Membership</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -499,7 +532,8 @@
 
   function showItem(idx) {
     const el = items[idx];
-    document.getElementById('lb-img').textContent = el.dataset.emoji;
+    document.getElementById('lb-img').innerHTML =
+      '<img src="' + el.dataset.image + '" alt="' + el.dataset.title + '">';
     document.getElementById('lb-title').textContent = el.dataset.title;
     document.getElementById('lb-desc').textContent = el.dataset.desc;
     document.getElementById('lb-tag').textContent = el.dataset.tag;

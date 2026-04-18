@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Map — IronForge Gym</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .sitemap-section { padding: 80px 0; }
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .sitemap-group {
+      background: var(--dark-mid);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+    .sitemap-group h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .sitemap-group h3 a { color: var(--white); }
+    .sitemap-group h3 a:hover { color: var(--red); }
+    .sitemap-group > p {
+      font-family: var(--font-condensed);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sitemap-group ul { list-style: none; }
+    .sitemap-group li { margin-bottom: 10px; }
+    .sitemap-group li a {
+      color: var(--light-grey);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .sitemap-group li a:hover { color: var(--red); padding-left: 4px; }
+    .sitemap-group li a::before { content: '→'; color: var(--red); font-size: 0.75rem; }
+
+    .tree-section { padding: 0 0 80px; }
+    .tree {
+      font-family: var(--font-condensed);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      line-height: 2;
+    }
+    .tree .root {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .tree .l1 { padding-left: 24px; color: var(--white); }
+    .tree .l2 { padding-left: 56px; color: var(--grey); font-size: 0.85rem; }
+    .tree .l1::before { content: '├── '; color: var(--border); }
+    .tree .l2::before { content: '│   └── '; color: var(--border); }
+    .tree a { color: inherit; }
+    .tree a:hover { color: var(--red); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Iron<span>Forge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Join Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>Site <span>Map</span></h1>
+  <p>All pages at a glance</p>
+</header>
+
+<div class="container">
+
+  <section class="sitemap-section">
+    <h2 class="section-title">All <span>Pages</span></h2>
+    <p class="section-sub">Navigate to any section of the IronForge website</p>
+
+    <div class="sitemap-grid">
+
+      <div class="sitemap-group">
+        <h3><a href="index.html">Home</a></h3>
+        <p>Main Landing Page</p>
+        <ul>
+          <li><a href="index.html#slider">Hero Image Slider</a></li>
+          <li><a href="index.html#stats">Stats Bar</a></li>
+          <li><a href="index.html#features">Features Overview</a></li>
+          <li><a href="index.html#promo">Membership Promo</a></li>
+          <li><a href="index.html#classes">Classes Preview</a></li>
+          <li><a href="index.html#testimonial">Member Testimonial</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h3><a href="about.html">About Us</a></h3>
+        <p>Our Story & Team</p>
+        <ul>
+          <li><a href="about.html#story">Our Story</a></li>
+          <li><a href="about.html#values">Our Values</a></li>
+          <li><a href="about.html#trainers">Meet the Coaches</a></li>
+          <li><a href="about.html#milestones">Milestones Table</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h3><a href="classes.html">Classes</a></h3>
+        <p>All Training Programmes</p>
+        <ul>
+          <li><a href="classes.html#strength">Strength Training</a></li>
+          <li><a href="classes.html#cardio">Cardio & Conditioning</a></li>
+          <li><a href="classes.html#combat">Combat Sports</a></li>
+          <li><a href="classes.html#mind-body">Mind & Body</a></li>
+          <li><a href="classes.html#schedule">Weekly Schedule</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h3><a href="membership.html">Membership</a></h3>
+        <p>Plans & Pricing</p>
+        <ul>
+          <li><a href="membership.html#basic">Basic Plan — $29/mo</a></li>
+          <li><a href="membership.html#elite">Elite Plan — $49/mo</a></li>
+          <li><a href="membership.html#champion">Champion Plan — $89/mo</a></li>
+          <li><a href="membership.html#compare">Comparison Table</a></li>
+          <li><a href="membership.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h3><a href="gallery.html">Gallery</a></h3>
+        <p>Photo Showcase</p>
+        <ul>
+          <li><a href="gallery.html">Facility Photos</a></li>
+          <li><a href="gallery.html">Training in Action</a></li>
+          <li><a href="gallery.html">Group Classes</a></li>
+          <li><a href="gallery.html">Member Transformations</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-group">
+        <h3><a href="contact.html">Contact</a></h3>
+        <p>Get In Touch</p>
+        <ul>
+          <li><a href="contact.html#form">Contact Form</a></li>
+          <li><a href="contact.html#map">Location Map</a></li>
+          <li><a href="contact.html#hours">Opening Hours</a></li>
+          <li><a href="mailto:info@ironforge.gym">Email Us Directly</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="tree-section">
+    <h2 class="section-title">File <span>Structure</span></h2>
+    <p class="section-sub">Project directory</p>
+    <div class="tree">
+      <div class="root">ironforge-gym/</div>
+      <div class="l1"><a href="index.html">index.html</a> — Homepage with slider</div>
+      <div class="l1"><a href="about.html">about.html</a> — About us & team</div>
+      <div class="l1"><a href="classes.html">classes.html</a> — Classes & schedule</div>
+      <div class="l1"><a href="membership.html">membership.html</a> — Plans & pricing</div>
+      <div class="l1"><a href="gallery.html">gallery.html</a> — Photo gallery</div>
+      <div class="l1"><a href="contact.html">contact.html</a> — Contact form</div>
+      <div class="l1"><a href="sitemap.html">sitemap.html</a> — This page</div>
+      <div class="l1"><a href="style.css">style.css</a> — Global stylesheet</div>
+    </div>
+  </section>
+
+  <section style="padding: 0 0 80px;">
+    <h2 class="section-title">External <span>Links</span></h2>
+    <p class="section-sub">Cool sites we recommend</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Men's Health Fitness</td>
+          <td>Health Media</td>
+          <td>Workout plans, nutrition tips, and fitness news</td>
+          <td><a href="https://www.menshealth.com/fitness/" target="_blank">Visit ↗</a></td>
+        </tr>
+        <tr>
+          <td>MyFitnessPal</td>
+          <td>Nutrition Tracking</td>
+          <td>Free calorie counter and diet tracker app</td>
+          <td><a href="https://www.myfitnesspal.com/" target="_blank">Visit ↗</a></td>
+        </tr>
+        <tr>
+          <td>StrongLifts 5×5</td>
+          <td>Strength Programming</td>
+          <td>Free beginner barbell strength program</td>
+          <td><a href="https://www.stronglifts.com/" target="_blank">Visit ↗</a></td>
+        </tr>
+        <tr>
+          <td>AthleanX (YouTube)</td>
+          <td>Video Training</td>
+          <td>Science-based workout and physique advice from Jeff Cavaliere</td>
+          <td><a href="https://www.youtube.com/@AthleanX" target="_blank">Visit ↗</a></td>
+        </tr>
+        <tr>
+          <td>Google Maps — IronForge</td>
+          <td>Location</td>
+          <td>Find us in Kathmandu</td>
+          <td><a href="https://www.google.com/maps/search/Kathmandu+Nepal+Gym" target="_blank">Open ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Iron<span>Forge</span></div>
+      <p>Nepal's most awarded fitness facility. Open 24/7, 365 days a year.</p>
+      <br/><p><a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="sitemap.html">Site Map</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="membership.html">Join IronForge</a></li>
+        <li><a href="classes.html#schedule">Class Schedule</a></li>
+        <li><a href="gallery.html">View Gallery</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://www.menshealth.com/fitness/" target="_blank">Men's Health Fitness ↗</a></li>
+        <li><a href="https://www.myfitnesspal.com/" target="_blank">MyFitnessPal ↗</a></li>
+        <li><a href="https://www.stronglifts.com/" target="_blank">StrongLifts 5×5 ↗</a></li>
+        <li><a href="https://www.youtube.com/@AthleanX" target="_blank">AthleanX YouTube ↗</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="secondary-nav">
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="classes.html">Classes</a> |
+    <a href="membership.html">Membership</a> |
+    <a href="gallery.html">Gallery</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="sitemap.html">Site Map</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 IronForge Gym · 42 Strength Avenue, Kathmandu, Nepal · <a href="mailto:info@ironforge.gym">info@ironforge.gym</a></p>
+    <p>Designed for The British College · IT Assessment 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
